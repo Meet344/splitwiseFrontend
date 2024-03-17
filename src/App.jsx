@@ -6,12 +6,14 @@ import About from "./pages/About"
 import Login from "./pages/Login"
 import Signup from "./pages/Signup"
 import Group from "./pages/Group"
+import Navbar from './components/Navbar'
 
 function App() {
 
   return (
     <>
       <Router>
+      <Navbar/>
       <div className='container'>
         <Routes>
           <Route exact path="/" element={<Home/>}/>
