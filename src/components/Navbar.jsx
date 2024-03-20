@@ -3,12 +3,12 @@ import { Link } from "react-router-dom"
 function Navbar() {
   return (
     <>
-        <nav className=" bg-blue-200 fixed w-full px-72 pt-2 pb-1 flex justify-between items-center">
+        <nav className=" bg-blue-200 fixed w-full px-72 pt-1 pb-1 flex justify-between items-center">
             {/* LOGO */}
             <div className="Logo">
             <Link className="flex items-center" to="/">
             <i className="fa-brands fa-skype text-4xl mr-2 "></i>
-            <div>SplitWise</div>
+            <span className="text-xl font-bold">SplitWise</span>
             </Link>
             </div>
 
