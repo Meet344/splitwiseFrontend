@@ -1,67 +1,58 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
+
+const host = "http://localhost:5000";
 
 const initialState = {
-  groups:[{
-    _id: "65edb750d9d44a17c491cb78",
-    title: "Exp1",
-    members: [
-      "65edb66ad9d44a17c491cb68",
-      "65edb67dd9d44a17c491cb6b",
-      "65edb691d9d44a17c491cb6e",
-    ],
-    invitedUsers: [],
-    currency: "INR",
-    __v: 0,
-  },
-  {
-    _id: "65edb7aad9d44a17c491cb7c",
-    title: "Exp2",
-    members: [
-      "65edb66ad9d44a17c491cb68",
-      "65edb648d9d44a17c491cb65",
-      "65edb691d9d44a17c491cb6e",
-    ],
-    invitedUsers: [],
-    currency: "INR",
-    __v: 0,
-  },
-  {
-    _id: "65edb8a3d9d44a17c491cb8a",
-    title: "Exp4",
-    members: [
-      "65edb648d9d44a17c491cb65",
-      "65edb691d9d44a17c491cb6e",
-      "65edb66ad9d44a17c491cb68",
-    ],
-    invitedUsers: [],
-    currency: "INR",
-    __v: 0,
-  },
-]};
+  loading: false,
+  groups: [] ,
+}
 
+export const getGroups = createAsyncThunk(
+  'getGroups',
+  async()=>{
+    const response = await axios.get(`${host}/api/group/allgroups`, {
+      headers: {
+        "Content-Type": "application/json",
+        "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjVlZGI2OTFkOWQ0NGExN2M0OTFjYjZlIn0sImlhdCI6MTcxMDA3NzU4NX0.xU1maoGnMzzykEQw71Kiv0I74Qg8Kjpe1EkfhYa7n44",
+      },
+    });
+    return response
+  }
+);
+
+export const createGroup = createAsyncThunk(
+  'createGroup',
+  async(data)=>{
+    const response = await axios.post(`${host}/api/group/creategroup`,{
+      title: data.title,
+      members: data.members
+    },{
+      headers: {
+      "Content-Type": "application/json",
+      "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjVlZGI2OTFkOWQ0NGExN2M0OTFjYjZlIn0sImlhdCI6MTcxMDA3NzU4NX0.xU1maoGnMzzykEQw71Kiv0I74Qg8Kjpe1EkfhYa7n44",
+    }
+    })
+    return response;
+  }
+)
 export const groupSlice = createSlice({
   name: "group",
   initialState,
-  reducers: {
-    addGroup: (state, action) => {
-      const group = {
-        _id: "65edb7aad9d44a17c491cb7cmeet",
-        title: action.payload,
-        members: [
-          "65edb66ad9d44a17c491cb68",
-          "65edb648d9d44a17c491cb65",
-          "65edb691d9d44a17c491cb6e",
-        ],
-        invitedUsers: [],
-        currency: "INR",
-        __v: 0,
-      };
-
-      state.push(group);
-    },
-  },
+  reducers: {},
+  
+  extraReducers: (builder)=>{
+      builder.addCase(getGroups.fulfilled, (state,action)=>{
+        state.groups= action.payload.data;
+      }),
+      builder.addCase(getGroups.pending, (state)=>{
+        state.loading = true;
+      }),
+      builder.addCase(createGroup.fulfilled, (state,action)=>{
+        state.groups.push(action.payload.data)
+      })
+    }
 });
 
-export const { addGroup } = groupSlice.actions;
 
 export default groupSlice.reducer;
