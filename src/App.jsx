@@ -5,8 +5,8 @@ import Home from './pages/Home'
 import About from "./pages/About"
 import Login from "./pages/Login"
 import Signup from "./pages/Signup"
-import Group from "./pages/Group"
 import Navbar from './components/Navbar'
+import NewGroup from './pages/NewGroup'
 
 function App() {
 
@@ -20,7 +20,7 @@ function App() {
           <Route exact path="/about" element={<About/>}/>
           <Route exact path="/login" element={<Login/>}/>
           <Route exact path="/signup" element={<Signup/>}/>
-          <Route exact path='/group' element={<Group/>}/>
+          <Route exact path='/group' element={<NewGroup/>}/>
         </Routes>
       </div>
       </Router>

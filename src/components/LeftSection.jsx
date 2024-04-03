@@ -20,15 +20,15 @@ const LeftSection = ()=>{
   }, []);
   
   console.log(groups);
-  const handleClick = (e)=>{
-    console.log("NewGroup")
-    const group = {
-      "title": "NewTestDone",
-      "members": ["test4@gmail.com","test1@gmail.com"]
-    }
-    e.preventDefault();
-    dispatch(createGroup(group));
-  }
+  // const handleClick = (e)=>{
+  //   console.log("NewGroup")
+  //   const group = {
+  //     "title": "NewTestDone",
+  //     "members": ["test4@gmail.com","test1@gmail.com"]
+  //   }
+  //   e.preventDefault();
+  //   dispatch(createGroup(group));
+  // }
 
     return (
     <div className="groups pt-12 pr-5 min-h-screen w-1/5 text-center">
@@ -49,10 +49,10 @@ const LeftSection = ()=>{
             <span>Groups</span>
             </div>
             <div className="text-xs ">
-            <button className="text-blue-500 hover:text-red-700 hover:cursor-pointer" onClick={handleClick}>
+            <Link className="text-blue-500 hover:text-red-700 hover:cursor-pointer" to={"/group"}>
             <i className="fa-solid fa-plus"></i>
             Add
-            </button>
+            </Link>
             </div>
         </div>
 
