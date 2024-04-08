@@ -21,6 +21,13 @@ export const getGroups = createAsyncThunk(
     return response
   }
   );
+
+  // export const getGroup = createAsyncThunk(
+  //   'getGroup',
+  //   async() =>{
+  //     const response = await axios.
+  //   }
+  // )
   
   export const createGroup = createAsyncThunk(
     'createGroup',

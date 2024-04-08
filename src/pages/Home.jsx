@@ -1,14 +1,14 @@
 import LeftSection from "../components/LeftSection"
-import MiddleSection from "../components/MiddleSection"
-import RightSection from "../components/RightSection"
+import MiddleDash from "../components/dashboard/MiddleDash"
+import RightDash from "../components/dashboard/RightDash"
 
 function Home() {
   return (
     <div className="w-screen">
-      <div className="w-3/4 flex justify-between items-center mx-auto overflow-visible container relative">
+      <div className="w-3/5 flex justify-between items-center mx-auto overflow-visible container relative">
         <LeftSection />
-        <MiddleSection />
-        <RightSection />
+        <MiddleDash />
+        <RightDash />
       </div>
     </div>
   )

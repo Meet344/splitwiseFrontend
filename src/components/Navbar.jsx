@@ -2,8 +2,8 @@ import { Link } from "react-router-dom"
 
 function Navbar() {
   return (
-    <>
-        <nav className=" bg-blue-200 fixed w-full px-72 pt-1 pb-1 flex justify-between items-center">
+    <div className="relative">
+        <nav className=" bg-blue-200 fixed top-0 z-50 w-full px-72 pt-1 pb-1 flex justify-between items-center">
             {/* LOGO */}
             <div className="Logo">
             <Link className="flex items-center" to="/">
@@ -32,7 +32,7 @@ function Navbar() {
             </div>
             </button>
         </nav>
-    </>
+    </div>
   )
 }
 

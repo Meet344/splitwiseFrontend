@@ -1,7 +1,7 @@
 
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom"
-import { createGroup, getGroups } from "../features/groupSlice";
+import { getGroups } from "../features/groupSlice";
 import React from "react";
 
 const LeftSection = ()=>{
@@ -20,21 +20,12 @@ const LeftSection = ()=>{
   }, []);
   
   console.log(groups);
-  // const handleClick = (e)=>{
-  //   console.log("NewGroup")
-  //   const group = {
-  //     "title": "NewTestDone",
-  //     "members": ["test4@gmail.com","test1@gmail.com"]
-  //   }
-  //   e.preventDefault();
-  //   dispatch(createGroup(group));
-  // }
 
     return (
     <div className="groups pt-12 pr-5 min-h-screen w-1/5 text-center">
 
       
-        <div className={`dashboard-btn text-left text-md mt-3 border-l-4 ${location.pathname==='/a' ? "border-blue-300 text-blue-300" : "border-transparent"}`}>
+        <div className={`dashboard-btn text-left text-md mt-3 border-l-4 ${location.pathname==='/' ? "border-blue-300 text-blue-300" : "border-transparent"}`}>
             <Link>
             <ul>
             <li className=" py-1 pl-2 mb-1 pr-8 hover:bg-gray-200"><i className="fa-brands fa-skype text-xl mr-2 "></i>ABC</li>
@@ -49,7 +40,7 @@ const LeftSection = ()=>{
             <span>Groups</span>
             </div>
             <div className="text-xs ">
-            <Link className="text-blue-500 hover:text-red-700 hover:cursor-pointer" to={"/group"}>
+            <Link className="text-blue-500 hover:text-red-700 hover:cursor-pointer" to={"/creategroup"}>
             <i className="fa-solid fa-plus"></i>
             Add
             </Link>
@@ -60,8 +51,8 @@ const LeftSection = ()=>{
             <ul>
                 {groups.map((group)=> {
                   return (
-                <Link key={group._id}>
-                <li key={group._id} className={`hover:bg-gray-300 pl-2 py-1 border-l-4 ${location.pathname==='/ab' ? "border-blue-300 text-blue-300" : "border-transparent"}`}><i className="fa-solid fa-user-group mr-2 text-xs"></i>{group.title}</li>
+                <Link key={group._id} to={`/group/${group._id}`}>
+                <li key={group._id} className={`hover:bg-gray-300 pl-2 py-1 border-l-4 ${location.pathname==="/group/"+group._id ? "border-blue-300 text-blue-300" : "border-transparent"}`}><i className="fa-solid fa-user-group mr-2 text-xs"></i>{group.title}</li>
                 </Link>
                   )
                 })}
